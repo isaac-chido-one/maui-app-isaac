@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MauiAppIsaac.Entities;
 using MauiAppIsaac.Interfaces;
 using MauiAppIsaac.Models;
 using System;
@@ -45,7 +46,7 @@ public partial class CarPartViewModel : ObservableValidator
 
     private string model = string.Empty;
 
-    private int year = 0;
+    private int year = 2025;
 
     private string description = string.Empty;
 
@@ -86,9 +87,67 @@ public partial class CarPartViewModel : ObservableValidator
         set => SetProperty(ref description, value, true);
     }
 
+    static string[] _brands = new[]
+    {
+        "Seleccionar ...",
+        "Audi",
+        "BMW",
+        "Daimler",
+        "Dodge",
+        "Ford",
+        "General Motors (Chevrolet)",
+        "Honda",
+        "Hyundai",
+        "Jeep",
+        "Kia",
+        "Mazda",
+        "MG Motor",
+        "Nissan",
+        "Peugeot",
+        "Porsche",
+        "Ram",
+        "Toyota",
+        "Volkswagen",
+    };
+
+    static string[] _categories = new[]
+    {
+        "Seleccionar ...",
+        "Carrocería",
+        "Chasis y suspensión",
+        "Motor y transmisión",
+        "Partes interiores",
+        "Sistema de frenos y escape",
+        "Sistema eléctrico y ECU",
+    };
+
+    public List<ItemEntity> Brands { get; set; }
+
+    public List<ItemEntity> Categories { get; set; }
+
     public CarPartViewModel()
     {
         _service = App.Current.Services.GetRequiredService<ICarParts>();
+        Brands = new List<ItemEntity>();
+        Categories = new List<ItemEntity>();
+
+        for (int i = 0; i < _brands.Length; i++)
+        {
+            Brands.Add(new ItemEntity
+            {
+                Id = i,
+                Name = _brands[i]
+            });
+        }
+
+        for (int i = 0; i < _categories.Length; i++)
+        {
+            Categories.Add(new ItemEntity
+            {
+                Id = i,
+                Name = _categories[i]
+            });
+        }
     }
 
     [RelayCommand]
@@ -112,28 +171,35 @@ public partial class CarPartViewModel : ObservableValidator
             return;
         }
 
-        if (Id == 0)
+        try
         {
-            Id = await _service.InsertCarPart(new CarPartModel()
+            if (Id == 0)
             {
-                Category = Category,
-                Brand = Brand,
-                Model = Model,
-                Year = Year,
-                Description = Description
-            });
+                Id = await _service.InsertCarPart(new CarPartModel()
+                {
+                    Category = Category,
+                    Brand = Brand,
+                    Model = Model,
+                    Year = Year,
+                    Description = Description
+                });
+            }
+            else
+            {
+                await _service.UpdateCarPart(new CarPartModel()
+                {
+                    Id = Id,
+                    Category = Category,
+                    Brand = Brand,
+                    Model = Model,
+                    Year = Year,
+                    Description = Description
+                });
+            }
         }
-        else
+        catch (Exception ex)
         {
-            await _service.UpdateCarPart(new CarPartModel()
-            {
-                Id = Id,
-                Category = Category,
-                Brand = Brand,
-                Model = Model,
-                Year = Year,
-                Description = Description
-            });
+            Errors.Add(ex.Message);
         }
 
         Result = $" Registro id: {Id}";

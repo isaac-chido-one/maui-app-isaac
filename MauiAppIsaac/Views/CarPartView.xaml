@@ -8,22 +8,35 @@
     <VerticalStackLayout
         Padding="10,10,0,0"
         HorizontalOptions="Center"
-        WidthRequest="200">
+        WidthRequest="300">
 
-        <Label Grid.Row="0" Grid.Column="0" Text="Categoría:"></Label>
-        <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Category}"></Entry>
+        <Picker
+            Grid.Row="0"
+            Title="Categoría:"
+            ItemsSource="{Binding Categories}"
+            ItemDisplayBinding="{Binding Name}"
+            SelectedIndex="{Binding Category}"
+            >
+        </Picker>
 
-        <Label Grid.Row="2" Grid.Column="0" Text="Marca:"></Label>
-        <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Brand}"></Entry>
+        <Picker
+            Grid.Row="1"
+            Title="Marca:"
+            ItemsSource="{Binding Brands}"
+            ItemDisplayBinding="{Binding Name}"
+            SelectedIndex="{Binding Brand}"
+            >
+        </Picker>
 
-        <Label Grid.Row="4" Grid.Column="0" Text="Modelo:"></Label>
-        <Entry Grid.Row="5" Grid.Column="0" Text="{Binding Model}"></Entry>
 
-        <Label Grid.Row="6" Grid.Column="0" Text="Año:"></Label>
-        <Entry Grid.Row="7" Grid.Column="0" Text="{Binding Year}"></Entry>
+        <Label Grid.Row="2" Grid.Column="0" Text="Modelo:"></Label>
+        <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Model}"></Entry>
 
-        <Label Grid.Row="8" Grid.Column="0" Text="Descripción:"></Label>
-        <Entry Grid.Row="9" Grid.Column="0" Text="{Binding Description}"></Entry>
+        <Label Grid.Row="4" Grid.Column="0" Text="Año:"></Label>
+        <Entry Grid.Row="6" Grid.Column="0" Text="{Binding Year}"></Entry>
+
+        <Label Grid.Row="6" Grid.Column="0" Text="Descripción:"></Label>
+        <Entry Grid.Row="7" Grid.Column="0" Text="{Binding Description}"></Entry>
 
         <CollectionView
             Grid.Row="4"

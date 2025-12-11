@@ -17,7 +17,7 @@ public class CarPartModel : BaseModel
     [MaxLength(255)]
     public string Model { get; set; } = string.Empty;
 
-    public int Year { get; set; } = 0;
+    public int Year { get; set; } = 2025;
 
     [MaxLength(255)]
     public string Description { get; set; } = string.Empty;

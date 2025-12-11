@@ -16,7 +16,7 @@ public class SQLLiteBase
 
     public SQLLiteBase()
     {
-        _rutaDB = FileAccessHelper.GetPathFile("alumnos.db3");
+        _rutaDB = FileAccessHelper.GetPathFile("yonque.db3");
 
         if (_connection != null)
         {
@@ -24,6 +24,49 @@ public class SQLLiteBase
         }
 
         _connection = new SQLiteConnection(_rutaDB);
-        _connection.CreateTable<AlumnoModel>();
+
+        // Crear las tablas necesarias aquí
+        //_connection.CreateTable<AlumnoModel>();
+        _connection.CreateTable<CarPartModel>();
+    }
+
+    /// <summary>
+    /// Cierra la conexión actual (si existe) y elimina el fichero de base de datos asociado a esta instancia.
+    /// </summary>
+    public void CloseAndDeleteDatabase()
+    {
+        try
+        {
+            _connection?.Close();
+            _connection?.Dispose();
+            _connection = null;
+
+            if (!string.IsNullOrEmpty(_rutaDB) && System.IO.File.Exists(_rutaDB))
+            {
+                System.IO.File.Delete(_rutaDB);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error al eliminar la BD desde CloseAndDeleteDatabase: {ex}");
+            throw;
+        }
+    }
+
+    public static void DeleteDatabaseFile(string filename = "alumnos.db3")
+    {
+        var path = FileAccessHelper.GetPathFile(filename);
+        try
+        {
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"No se pudo eliminar la BD {path}: {ex}");
+            throw;
+        }
     }
 }
