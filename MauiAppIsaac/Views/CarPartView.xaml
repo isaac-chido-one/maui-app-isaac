@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiAppIsaac.ViewModels"
+             x:Class="MauiAppIsaac.Views.CarPartView"
+             Title="Autoparte"
+             x:DataType="vm:CarPartViewModel">
+    <VerticalStackLayout
+        Padding="10,10,0,0"
+        HorizontalOptions="Center"
+        WidthRequest="200">
+
+        <Label Grid.Row="0" Grid.Column="0" Text="Categoría:"></Label>
+        <Entry Grid.Row="1" Grid.Column="0" Text="{Binding Category}"></Entry>
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Marca:"></Label>
+        <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Brand}"></Entry>
+
+        <Label Grid.Row="4" Grid.Column="0" Text="Modelo:"></Label>
+        <Entry Grid.Row="5" Grid.Column="0" Text="{Binding Model}"></Entry>
+
+        <Label Grid.Row="6" Grid.Column="0" Text="Año:"></Label>
+        <Entry Grid.Row="7" Grid.Column="0" Text="{Binding Year}"></Entry>
+
+        <Label Grid.Row="8" Grid.Column="0" Text="Descripción:"></Label>
+        <Entry Grid.Row="9" Grid.Column="0" Text="{Binding Description}"></Entry>
+
+        <CollectionView
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="0,10"
+            BackgroundColor="LightCoral"
+            ItemsSource="{Binding Errors}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label
+                        Padding="5"
+                        LineBreakMode="WordWrap"
+                        MinimumWidthRequest="190"
+                        Text="{Binding .}"
+                        TextColor="White"></Label>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <VerticalStackLayout HorizontalOptions="Center">
+            <ImageButton
+                Command="{Binding StoreCarPartCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                IsVisible="{Binding IsEnabled}"
+                Source="save.png" />
+
+            <ActivityIndicator
+                IsEnabled="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}" />
+
+            <Frame BackgroundColor="Green" IsVisible="{Binding IsVisible}">
+                <Label
+                    FontSize="Title"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Result}"
+                    TextColor="White" />
+            </Frame>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

@@ -28,13 +28,18 @@ namespace MauiAppIsaac
             services.AddTransient<TestViewModel>();
             services.AddTransient<AlumnosViewModel>();
             services.AddTransient<AlumnoViewModel>();
+            services.AddTransient<CarPartsViewModel>();
+            services.AddTransient<CarPartViewModel>();
 
             // Views
             services.AddSingleton<ListadoAlumnosView>();
             services.AddSingleton<AlumnoView>();
+            services.AddSingleton<DisplayCartPartsView>();
+            services.AddSingleton<CarPartView>();
 
             // Services
             services.AddSingleton<IAlumnos, AlumnosService>();
+            services.AddSingleton<ICarParts, CarPartsService>();
             services.AddTransient<IDialogService, DialogService>();
 
             return services.BuildServiceProvider();

@@ -2,14 +2,14 @@ using MauiAppIsaac.ViewModels;
 
 namespace MauiAppIsaac.Views.Templates;
 
-public partial class ItemAlumno : ContentView
+public partial class ItemCarPart : ContentView
 {
-    private readonly AlumnosViewModel? viewmodel;
-    public ItemAlumno()
+    private readonly CarPartsViewModel? viewmodel;
+    public ItemCarPart()
     {
         try
         {
-            viewmodel = App.Current.Services.GetService<AlumnosViewModel>();
+            viewmodel = App.Current.Services.GetService<CarPartsViewModel>();
             InitializeComponent();
         }
         catch (Exception ex)

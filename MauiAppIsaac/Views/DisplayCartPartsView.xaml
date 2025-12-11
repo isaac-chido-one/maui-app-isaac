@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiAppIsaac.ViewModels"
+             xmlns:te="clr-namespace:MauiAppIsaac.Views.Templates"
+             x:Class="MauiAppIsaac.Views.DisplayCartPartsView"
+             Title="Listado de autopartes"
+             x:DataType="vm:CarPartsViewModel">
+    <Grid RowDefinitions="100,*,50">
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <ImageButton
+                Padding="0,10,0,0"
+                Command="{Binding DisplayCarPartsCommand}"
+                IsVisible="{Binding IsReady}"
+                Source="list.png" />
+            <ImageButton
+                Padding="0,10,0,0"
+                Command="{Binding AddNewCommand}"
+                Source="addnew.png" />
+        </HorizontalStackLayout>
+        <Frame
+            Grid.Row="1"
+            Margin="10"
+            Background="{StaticResource Gray100}"
+            HorizontalOptions="Center">
+            <RefreshView Command="{Binding DisplayCarPartsCommand}" IsRefreshing="{Binding IsRefreshing}">
+                <CollectionView
+                    x:Name="collectionView"
+                    BindingContext="{Binding CarParts}"
+                    ItemsSource="{Binding}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <te:ItemCarPart></te:ItemCarPart>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Label BackgroundColor="Azure" Text="Sin información" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+        </Frame>
+    </Grid>
+</ContentPage>

@@ -22,7 +22,7 @@ public partial class AlumnoViewModel : ObservableValidator
     public ObservableCollection<string> Errores { get; set; } = new();
 
     [ObservableProperty]
-    private string resultado;
+    private string resultado = string.Empty;
 
     [ObservableProperty]
     private bool isBusy;
