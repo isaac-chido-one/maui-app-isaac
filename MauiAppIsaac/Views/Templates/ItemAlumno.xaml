@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mo="clr-namespace:MauiAppIsaac.Models"
+             xmlns:vm="clr-namespace:MauiAppIsaac.ViewModels"
+             x:Class="MauiAppIsaac.Views.Templates.ItemAlumno">
+
+    <ContentView.Resources>
+        <Style x:Key="Registro" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource Primary}"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+        <Style x:Key="Id" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource White}"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+    </ContentView.Resources>
+
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Border BackgroundColor="{StaticResource Primary}">
+            <Border.StrokeShape>
+                <RoundRectangle BackgroundColor="{StaticResource Primary}" CornerRadius="25,25,25,25"></RoundRectangle>
+            </Border.StrokeShape>
+            <Label Style="{StaticResource Id}" Text="{Binding Id}"></Label>
+        </Border>
+
+        <HorizontalStackLayout Grid.Column="1">
+            <Label Style="{StaticResource Registro}" Text="{Binding Nombre}"></Label>
+            <Label Style="{StaticResource Registro}" Text="{Binding Apellido}"></Label>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout
+            Grid.Column="2"
+            x:DataType="vm:AlumnosViewModel"
+            HorizontalOptions="Center">
+            <ImageButton
+                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AlumnosViewModel}}, Path=EditarAlumnoCommand}"
+                CommandParameter="{Binding .}"
+                Source="edit.png"
+                WidthRequest="40">
+            </ImageButton>
+            <ImageButton
+                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AlumnosViewModel}}, Path=EliminarAlumnoCommand}"
+                CommandParameter="{Binding .}"
+                Source="trash.png"
+                WidthRequest="40">
+            </ImageButton>
+        </HorizontalStackLayout>
+        <BoxView
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            BackgroundColor="LightGray"
+            HeightRequest="1">
+        </BoxView>
+    </Grid>
+
+</ContentView>

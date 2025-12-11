@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppIsaac.Views.ListadoAlumnosView"
+             xmlns:vm="clr-namespace:MauiAppIsaac.ViewModels"
+             xmlns:mo="clr-namespace:MauiAppIsaac.Models"
+             xmlns:te="clr-namespace:MauiAppIsaac.Views.Templates"
+             Title="Listado alumnos"
+             x:DataType="vm:AlumnosViewModel">
+    <Grid RowDefinitions="100,*,50">
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <ImageButton
+                Padding="0,10,0,0"
+                Command="{Binding ListarAlumnosCommand}"
+                IsVisible="{Binding IsReady}"
+                Source="list.png" />
+            <ImageButton
+                Padding="0,10,0,0"
+                Command="{Binding AddNewCommand}"
+                Source="addnew.png" />
+        </HorizontalStackLayout>
+        <Frame
+            Grid.Row="1"
+            Margin="10"
+            Background="{StaticResource Gray100}"
+            HorizontalOptions="Center">
+            <RefreshView Command="{Binding ListarAlumnosCommand}" IsRefreshing="{Binding IsRefreshing}">
+                <CollectionView
+                    x:Name="collectionView"
+                    BindingContext="{Binding Alumnos}"
+                    ItemsSource="{Binding}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <te:ItemAlumno></te:ItemAlumno>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Label BackgroundColor="Azure" Text="Sin datos para mostrar" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+        </Frame>
+    </Grid>
+</ContentPage>
