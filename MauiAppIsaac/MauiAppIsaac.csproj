@@ -68,25 +68,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Views\ListadoAlumnosView.xaml.cs">
-			<DependentUpon>ListadoAlumnosView.xaml</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<MauiXaml Update="Views\AlumnoView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
 		<MauiXaml Update="Views\CarPartView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\DisplayCartPartsView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\ListadoAlumnosView.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</MauiXaml>
-		<MauiXaml Update="Views\Templates\ItemAlumno.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 		<MauiXaml Update="Views\Templates\ItemCarPart.xaml">

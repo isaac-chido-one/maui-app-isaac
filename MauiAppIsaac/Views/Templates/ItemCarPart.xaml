@@ -35,10 +35,10 @@
         </Border>
 
         <HorizontalStackLayout Grid.Column="1">
-            <Label Style="{StaticResource Registro}" Text="{Binding Category}"></Label>
-            <Label Style="{StaticResource Registro}" Text="{Binding Brand}"></Label>
+            <Label Style="{StaticResource Registro}" Text="{Binding BrandName}"></Label>
             <Label Style="{StaticResource Registro}" Text="{Binding Model}"></Label>
             <Label Style="{StaticResource Registro}" Text="{Binding Year}"></Label>
+            <Label Style="{StaticResource Registro}" Text="{Binding CategoryName}"></Label>
             <Label Style="{StaticResource Registro}" Text="{Binding Description}"></Label>
         </HorizontalStackLayout>
 

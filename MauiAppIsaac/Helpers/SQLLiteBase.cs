@@ -26,7 +26,6 @@ public class SQLLiteBase
         _connection = new SQLiteConnection(_rutaDB);
 
         // Crear las tablas necesarias aquí
-        //_connection.CreateTable<AlumnoModel>();
         _connection.CreateTable<CarPartModel>();
     }
 

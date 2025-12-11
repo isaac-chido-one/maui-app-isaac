@@ -87,40 +87,6 @@ public partial class CarPartViewModel : ObservableValidator
         set => SetProperty(ref description, value, true);
     }
 
-    static string[] _brands = new[]
-    {
-        "Seleccionar ...",
-        "Audi",
-        "BMW",
-        "Daimler",
-        "Dodge",
-        "Ford",
-        "General Motors (Chevrolet)",
-        "Honda",
-        "Hyundai",
-        "Jeep",
-        "Kia",
-        "Mazda",
-        "MG Motor",
-        "Nissan",
-        "Peugeot",
-        "Porsche",
-        "Ram",
-        "Toyota",
-        "Volkswagen",
-    };
-
-    static string[] _categories = new[]
-    {
-        "Seleccionar ...",
-        "Carrocería",
-        "Chasis y suspensión",
-        "Motor y transmisión",
-        "Partes interiores",
-        "Sistema de frenos y escape",
-        "Sistema eléctrico y ECU",
-    };
-
     public List<ItemEntity> Brands { get; set; }
 
     public List<ItemEntity> Categories { get; set; }
@@ -131,21 +97,21 @@ public partial class CarPartViewModel : ObservableValidator
         Brands = new List<ItemEntity>();
         Categories = new List<ItemEntity>();
 
-        for (int i = 0; i < _brands.Length; i++)
+        for (int i = 0; i < CarPartModel.BRANDS.Length; i++)
         {
             Brands.Add(new ItemEntity
             {
                 Id = i,
-                Name = _brands[i]
+                Name = CarPartModel.BRANDS[i]
             });
         }
 
-        for (int i = 0; i < _categories.Length; i++)
+        for (int i = 0; i < CarPartModel.CATEGORIES.Length; i++)
         {
             Categories.Add(new ItemEntity
             {
                 Id = i,
-                Name = _categories[i]
+                Name = CarPartModel.CATEGORIES[i]
             });
         }
     }
