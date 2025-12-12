@@ -58,6 +58,7 @@ public partial class PatientViewModel : ObservableValidator
     private double height = 0.0;
 
     [Required(ErrorMessage = "El género es requerido")]
+    [Range(1, 2, ErrorMessage = "Selecciona un género")]
     public int Gender
     {
         get => gender;
@@ -65,6 +66,7 @@ public partial class PatientViewModel : ObservableValidator
     }
 
     [Required(ErrorMessage = "La nivel de actividad es requerido")]
+    [Range(1, 5, ErrorMessage = "Selecciona un nivel de actividad")]
     public int Level
     {
         get => level;
@@ -80,7 +82,7 @@ public partial class PatientViewModel : ObservableValidator
     }
 
     [Required(ErrorMessage = "La edad es requerida")]
-    [Range(0, 100, ErrorMessage = "El rango de edad es incorrecto")]
+    [Range(1, 100, ErrorMessage = "El rango de edad es incorrecto")]
     public int Age
     {
         get => age;
@@ -96,6 +98,7 @@ public partial class PatientViewModel : ObservableValidator
     }
 
     [Required(ErrorMessage = "El peso es requerido")]
+    [Range(1, 700, ErrorMessage = "El rango de peso es incorrecto")]
     public double Weight
     {
         get => weight;
@@ -103,6 +106,7 @@ public partial class PatientViewModel : ObservableValidator
     }
 
     [Required(ErrorMessage = "La estatura es requerida")]
+    [Range(0.3, 3, ErrorMessage = "El rango de estatura es incorrecto")]
     public double Height
     {
         get => height;
