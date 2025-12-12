@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>MauiAppIsaac</ApplicationTitle>
+		<ApplicationTitle>Isaac parcial 3</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.mauiappisaac</ApplicationId>
@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\heart.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -68,13 +68,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiXaml Update="Views\CarPartView.xaml">
+		<Compile Update="Views\DisplayPatientsView.xaml.cs">
+			<DependentUpon>DisplayPatientsView.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\PatientView.xaml.cs">
+			<DependentUpon>PatientView.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\Templates\ItemPatient.xaml.cs">
+			<DependentUpon>ItemPatient.xaml</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<MauiXaml Update="Views\PatientView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Views\DisplayCartPartsView.xaml">
+		<MauiXaml Update="Views\DisplayPatientsView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
-		<MauiXaml Update="Views\Templates\ItemCarPart.xaml">
+		<MauiXaml Update="Views\Templates\ItemPatient.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
 	</ItemGroup>

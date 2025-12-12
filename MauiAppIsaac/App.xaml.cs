@@ -23,15 +23,15 @@ namespace MauiAppIsaac
         private static IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // ViewModels
-            services.AddTransient<CarPartsViewModel>();
-            services.AddTransient<CarPartViewModel>();
+            services.AddTransient<PatientsViewModel>();
+            services.AddTransient<PatientViewModel>();
 
             // Views
-            services.AddSingleton<DisplayCartPartsView>();
-            services.AddSingleton<CarPartView>();
+            services.AddSingleton<DisplayPatientsView>();
+            services.AddSingleton<PatientView>();
 
             // Services
-            services.AddSingleton<ICarParts, CarPartsService>();
+            services.AddSingleton<IPatients, PatientsService>();
             services.AddTransient<IDialogService, DialogService>();
 
             return services.BuildServiceProvider();

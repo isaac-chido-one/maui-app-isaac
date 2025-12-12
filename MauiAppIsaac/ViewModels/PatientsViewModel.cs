@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace MauiAppIsaac.ViewModels;
 
-public partial class CarPartsViewModel : ObservableObject
+public partial class PatientsViewModel : ObservableObject
 {
-    private readonly ICarParts _service;
+    private readonly IPatients _service;
 
     private readonly IDialogService _dialog;
 
-    public ObservableCollection<CarPartModel> CarParts { get; set; } = new();
+    public ObservableCollection<PatientModel> Patients { get; set; } = new();
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsReady))]
@@ -29,24 +29,24 @@ public partial class CarPartsViewModel : ObservableObject
 
     public bool IsReady => !IsLoading;
 
-    public CarPartsViewModel()
+    public PatientsViewModel()
     {
-        _service = App.Current.Services.GetService<ICarParts>();
+        _service = App.Current.Services.GetService<IPatients>();
         _dialog = App.Current.Services.GetService<IDialogService>();
-        Task.Run(async () => await DisplayCarParts());
+        Task.Run(async () => await DisplayPatients());
     }
 
 
     [RelayCommand]
-    public async Task DisplayCarParts()
+    public async Task DisplayPatients()
     {
         IsLoading = true;
-        CarParts.Clear();
+        Patients.Clear();
         var list = await _service.GetAll();
 
         foreach (var item in list)
         {
-            CarParts.Add(item);
+            Patients.Add(item);
         }
 
         IsLoading = false;
@@ -54,29 +54,29 @@ public partial class CarPartsViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public async Task EditCarPart(CarPartModel carPart)
+    public async Task EditPatient(PatientModel patient)
     {
-        await Shell.Current.GoToAsync($"/CarPartView?Id={carPart.Id}&Category={carPart.Category}&Brand={carPart.Brand}&Model={carPart.Model}&Year={carPart.Year}&Description={carPart.Description}", false);
+        await Shell.Current.GoToAsync($"/PatientView?Id={patient.Id}&Gender={patient.Gender}&Level={patient.Level}&FirstName={patient.FirstName}&Age={patient.Age}&LastName={patient.LastName}&Weight={patient.Weight}&Height={patient.Height}", false);
     }
 
     [RelayCommand]
-    public async Task DeleteCarPart(CarPartModel carPart)
+    public async Task DeletePatient(PatientModel patient)
     {
         IsLoading = true;
-        var res = await _dialog.ShowAlertAsync("Eliminar", $"¿Deseas eliminar la autoparte {carPart.Id}?", "Aceptar", "Cancelar");
+        var res = await _dialog.ShowAlertAsync("Eliminar", $"¿Deseas eliminar al paciente {patient.Id}?", "Aceptar", "Cancelar");
 
         if (!res)
         {
             return;
         }
 
-        await _service.DeleteCarPart(carPart);
-        await DisplayCarParts();
+        await _service.DeletePatient(patient);
+        await DisplayPatients();
     }
 
     [RelayCommand]
     public async Task AddNew()
     {
-        await Shell.Current.Navigation.PushAsync(new CarPartView(), false);
+        await Shell.Current.Navigation.PushAsync(new PatientView(), false);
     }
 }

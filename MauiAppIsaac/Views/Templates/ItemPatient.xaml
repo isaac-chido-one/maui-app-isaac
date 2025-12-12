@@ -2,7 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MauiAppIsaac.ViewModels"
-             x:Class="MauiAppIsaac.Views.Templates.ItemCarPart">
+             x:Class="MauiAppIsaac.Views.Templates.ItemPatient">
 
 
     <ContentView.Resources>
@@ -35,30 +35,35 @@
         </Border>
 
         <HorizontalStackLayout Grid.Column="1">
-            <Label Style="{StaticResource Registro}" Text="{Binding BrandName}"></Label>
-            <Label Style="{StaticResource Registro}" Text="{Binding Model}"></Label>
-            <Label Style="{StaticResource Registro}" Text="{Binding Year}"></Label>
-            <Label Style="{StaticResource Registro}" Text="{Binding CategoryName}"></Label>
-            <Label Style="{StaticResource Registro}" Text="{Binding Description}"></Label>
+            <VerticalStackLayout>
+                <Label Style="{StaticResource Registro}" Text="{Binding FullName}"></Label>
+                <Label Style="{StaticResource Registro}" Text="{Binding IdealWeight}"></Label>
+                <Label Style="{StaticResource Registro}" Text="{Binding Tdee}"></Label>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Style="{StaticResource Registro}" Text="{Binding Imc}"></Label>
+                <Label Style="{StaticResource Registro}" Text="{Binding Gc}"></Label>
+            </VerticalStackLayout>
         </HorizontalStackLayout>
 
         <HorizontalStackLayout
             Grid.Column="2"
-            x:DataType="vm:CarPartsViewModel"
+            x:DataType="vm:PatientsViewModel"
             HorizontalOptions="Center">
             <ImageButton
-                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CarPartsViewModel}}, Path=EditCarPartCommand}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PatientsViewModel}}, Path=EditPatientCommand}"
                 CommandParameter="{Binding .}"
                 Source="edit.png"
                 WidthRequest="40">
             </ImageButton>
             <ImageButton
-                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CarPartsViewModel}}, Path=DeleteCarPartCommand}"
+                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:PatientsViewModel}}, Path=DeletePatientCommand}"
                 CommandParameter="{Binding .}"
                 Source="trash.png"
                 WidthRequest="40">
             </ImageButton>
         </HorizontalStackLayout>
+
         <BoxView
             Grid.Row="1"
             Grid.ColumnSpan="3"

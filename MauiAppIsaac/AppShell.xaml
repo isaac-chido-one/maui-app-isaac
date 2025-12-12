@@ -6,15 +6,15 @@
     xmlns:local="clr-namespace:MauiAppIsaac"
     xmlns:vi="clr-namespace:MauiAppIsaac.Views"
     Shell.FlyoutBehavior="Disabled"
-    Title="Yonque">
+    Title="Isaac parcial 3">
 
     <ShellContent
-        Title="Listar"
-        ContentTemplate="{DataTemplate vi:DisplayCartPartsView}"
-        Route="DisplayCartPartsView" />
+        Title="Pacientes"
+        ContentTemplate="{DataTemplate vi:DisplayPatientsView}"
+        Route="DisplayPatientsView" />
     <ShellContent
-        Title="Nueva autoparte"
-        ContentTemplate="{DataTemplate vi:CarPartView}"
-        Route="CarPartView" />
+        Title="Registrar paciente"
+        ContentTemplate="{DataTemplate vi:PatientView}"
+        Route="PatientView" />
 
 </Shell>

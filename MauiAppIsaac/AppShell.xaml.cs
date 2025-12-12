@@ -7,8 +7,8 @@ namespace MauiAppIsaac
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(CarPartView), typeof(CarPartView));
-            Routing.RegisterRoute(nameof(DisplayCartPartsView), typeof(DisplayCartPartsView));
+            Routing.RegisterRoute(nameof(PatientView), typeof(PatientView));
+            Routing.RegisterRoute(nameof(DisplayPatientsView), typeof(DisplayPatientsView));
         }
     }
 }

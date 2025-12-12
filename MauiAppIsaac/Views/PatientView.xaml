@@ -2,44 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MauiAppIsaac.ViewModels"
-             x:Class="MauiAppIsaac.Views.CarPartView"
-             Title="Autoparte"
-             x:DataType="vm:CarPartViewModel">
+             x:Class="MauiAppIsaac.Views.PatientView"
+             Title="Paciente"
+             x:DataType="vm:PatientViewModel">
     <VerticalStackLayout
         Padding="10,10,0,0"
         HorizontalOptions="Center"
         WidthRequest="300">
 
+        <Label Grid.Row="0" Grid.Column="0" Text="Nombre:"></Label>
+        <Entry Grid.Row="1" Grid.Column="0" Text="{Binding FirstName}"></Entry>
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Apellido:"></Label>
+        <Entry Grid.Row="3" Grid.Column="0" Text="{Binding LastName}"></Entry>
+
+        <Label Grid.Row="4" Grid.Column="0" Text="Edad:"></Label>
+        <Entry Grid.Row="5" Grid.Column="0" Text="{Binding Age}" MaxLength="2" Keyboard="Numeric"></Entry>
+
+        <Label Grid.Row="6" Grid.Column="0" Text="Peso:"></Label>
+        <Entry Grid.Row="7" Grid.Column="0" Text="{Binding Weight}" Keyboard="Numeric"></Entry>
+
+        <Label Grid.Row="8" Grid.Column="0" Text="Estatura:"></Label>
+        <Entry Grid.Row="9" Grid.Column="0" Text="{Binding Height}" Keyboard="Numeric"></Entry>
+
         <Picker
-            Grid.Row="0"
-            Title="Categoría:"
-            ItemsSource="{Binding Categories}"
+            Grid.Row="10"
+            Title="Género:"
+            ItemsSource="{Binding Genders}"
             ItemDisplayBinding="{Binding Name}"
-            SelectedIndex="{Binding Category}"
+            SelectedIndex="{Binding Gender}"
             >
         </Picker>
 
         <Picker
-            Grid.Row="1"
-            Title="Marca:"
-            ItemsSource="{Binding Brands}"
+            Grid.Row="11"
+            Title="Nivel de actividad:"
+            ItemsSource="{Binding Levels}"
             ItemDisplayBinding="{Binding Name}"
-            SelectedIndex="{Binding Brand}"
+            SelectedIndex="{Binding Level}"
             >
         </Picker>
-
-
-        <Label Grid.Row="2" Grid.Column="0" Text="Modelo:"></Label>
-        <Entry Grid.Row="3" Grid.Column="0" Text="{Binding Model}"></Entry>
-
-        <Label Grid.Row="4" Grid.Column="0" Text="Año:"></Label>
-        <Entry Grid.Row="6" Grid.Column="0" Text="{Binding Year}"></Entry>
-
-        <Label Grid.Row="6" Grid.Column="0" Text="Descripción:"></Label>
-        <Entry Grid.Row="7" Grid.Column="0" Text="{Binding Description}"></Entry>
 
         <CollectionView
-            Grid.Row="4"
+            Grid.Row="8"
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Margin="0,10"
@@ -59,7 +64,7 @@
 
         <VerticalStackLayout HorizontalOptions="Center">
             <ImageButton
-                Command="{Binding StoreCarPartCommand}"
+                Command="{Binding StorePatientCommand}"
                 IsEnabled="{Binding IsEnabled}"
                 IsVisible="{Binding IsEnabled}"
                 Source="save.png" />

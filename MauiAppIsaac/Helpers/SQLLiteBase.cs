@@ -14,9 +14,11 @@ public class SQLLiteBase
 
     public SQLiteConnection? _connection;
 
+    private static string dbname = "imc.db3";
+
     public SQLLiteBase()
     {
-        _rutaDB = FileAccessHelper.GetPathFile("yonque.db3");
+        _rutaDB = FileAccessHelper.GetPathFile(dbname);
 
         if (_connection != null)
         {
@@ -26,7 +28,7 @@ public class SQLLiteBase
         _connection = new SQLiteConnection(_rutaDB);
 
         // Crear las tablas necesarias aquí
-        _connection.CreateTable<CarPartModel>();
+        _connection.CreateTable<PatientModel>();
     }
 
     /// <summary>
@@ -52,9 +54,9 @@ public class SQLLiteBase
         }
     }
 
-    public static void DeleteDatabaseFile(string filename = "alumnos.db3")
+    public static void DeleteDatabaseFile()
     {
-        var path = FileAccessHelper.GetPathFile(filename);
+        var path = FileAccessHelper.GetPathFile(dbname);
         try
         {
             if (System.IO.File.Exists(path))

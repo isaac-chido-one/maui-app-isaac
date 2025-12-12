@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:MauiAppIsaac.ViewModels"
              xmlns:te="clr-namespace:MauiAppIsaac.Views.Templates"
-             x:Class="MauiAppIsaac.Views.DisplayCartPartsView"
-             Title="Listado de autopartes"
-             x:DataType="vm:CarPartsViewModel">
+             x:Class="MauiAppIsaac.Views.DisplayPatientsView"
+             Title="Listado de pacientes"
+             x:DataType="vm:PatientsViewModel">
     <Grid RowDefinitions="100,*,50">
         <HorizontalStackLayout HorizontalOptions="Center">
             <ImageButton
                 Padding="0,10,0,0"
-                Command="{Binding DisplayCarPartsCommand}"
+                Command="{Binding DisplayPatientsCommand}"
                 IsVisible="{Binding IsReady}"
                 Source="list.png" />
             <ImageButton
@@ -23,14 +23,14 @@
             Margin="10"
             Background="{StaticResource Gray100}"
             HorizontalOptions="Center">
-            <RefreshView Command="{Binding DisplayCarPartsCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <RefreshView Command="{Binding DisplayPatientsCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <CollectionView
                     x:Name="collectionView"
-                    BindingContext="{Binding CarParts}"
+                    BindingContext="{Binding Patients}"
                     ItemsSource="{Binding}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <te:ItemCarPart></te:ItemCarPart>
+                            <te:ItemPatient></te:ItemPatient>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                     <CollectionView.EmptyView>
